@@ -15,9 +15,22 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-          
-    <%= yield %>
-
+    
+    <div class = "container">
+      <div class = "row">
+        <nav class = "navbar navbar-header">
+            <strong>Navigation Options</strong>
+            <%= link_to "Home", root_path %>
+            <%= link_to "Artists", artists_path %>
+            <%= link_to "Users", artists_path %>
+            <%= link_to "My Page", artists_path %>
+            <%= link_to "Logout", artists_path %>
+        </nav>
+      </div>
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </body>
