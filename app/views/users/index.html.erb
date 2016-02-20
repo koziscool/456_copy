@@ -1,0 +1,9 @@
+
+<%= render "shared/flash" %>
+
+<h4>Listing users</h4>
+<% @users.each do |user| %>
+  <%= link_to user.name_and_count, user_path(user) %><br/>
+
+<% end %>
+<br>

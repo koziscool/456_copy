@@ -1,0 +1,10 @@
+ 
+  <%= @user.name %>
+  <br/><br/>
+  <% @user.playlists.each do |list| %>
+    <%= link_to list.name, "#" %><br/>
+  <% end %>
+  <br/><br/>
+  <% @user.bookmarks.each do |mark| %>
+    <%= link_to mark.bookmarkable_type, "#" %><br/>
+  <% end %>

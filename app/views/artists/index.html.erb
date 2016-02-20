@@ -1,3 +1,6 @@
+
+<%= render "shared/flash" %>
+
 <h4>Listing Artists</h4>
 <% @artists.each do |artist| %>
   <%= link_to artist.name, artist_path(artist) %><br/>
