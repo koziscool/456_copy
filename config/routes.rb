@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :songs, :only => [ :show ]
   resources :users
   resources :playlists
-  resources :playlist_selections, :only => [ :destroy  ]
+  resources :playlist_selections, :only => [ :create, :destroy  ]
+  resources :bookmarks, :only => [ :create, :destroy  ]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

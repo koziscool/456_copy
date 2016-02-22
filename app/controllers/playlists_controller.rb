@@ -12,8 +12,8 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new(playlist_params)
-    @playlist.user_id = params[ :user_id]
     if @playlist.save
+      puts "created"
       flash[:success] = "playlist created"
       redirect_to playlist_path(@playlist)
     else
@@ -26,6 +26,17 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
   end
 
+  def update
+    @playlist = Playlist.find( params[:id] )
+    if @playlist.update(playlist_params)
+        flash[:success] = "updated successfully"
+        redirect_to playlist_path(@playlist)
+    else    
+      flash[:error] = "not updated successfully"
+      render :edit
+    end
+  end
+
   def show
     @playlist = Playlist.find(params[:id])
   end
@@ -33,7 +44,10 @@ class PlaylistsController < ApplicationController
   def destroy
     @playlist = Playlist.find_(params[:id])
 
-    if @playlist.destroy
+    if !playlist
+      flash[:error] = "no such playlist"
+      redirect_to root_url
+    elsif @playlist.destroy
       flash[:success] = "playlist destroyed"
       redirect_to user_path(current_user)
     else    
@@ -45,7 +59,7 @@ class PlaylistsController < ApplicationController
 
   private
   def playlist_params
-    params.require(:playlist).permit(:name)
+    params.require(:playlist).permit(:name, :user_id)
   end
 
 end
