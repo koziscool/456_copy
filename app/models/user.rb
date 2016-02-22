@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   validates :password, :length => { :in => 5..35 }, :allow_nil => true
 
 
-  has_many  :playlists
-  has_many  :bookmarks
+  has_many  :playlists, :dependent => :destroy
+  has_many  :bookmarks, :dependent => :destroy
   
   has_many :initiated_followings, class_name: "Following", foreign_key: :follower_id
   has_many :followeds, through: :initiated_followings, source: :followed
