@@ -10,6 +10,10 @@
     <%= link_to mark.bookmarkable_type, the_path %><br/>
   <% end %>
 
+  <br/>
+  <%= link_to "New playlist", new_playlist_path %>
+
+
   <br/><br/>
   <%= link_to "Edit", edit_user_path(@user) %>
   <%= link_to "Delete", user_path(@user), :method => :delete %>

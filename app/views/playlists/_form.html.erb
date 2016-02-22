@@ -1,5 +1,7 @@
-<%= form_for(@playlist) do |f| %>
-   <%= f.label 'Playlist Name: '%> </td> 
-   <%= f.text_field :name %> </td> 
-    <%= f.submit %>
+<% list = @playlist || Playlist.new %>
+<%= form_for list do |f| %>
+  <%= f.label 'Playlist Name: '%>
+  <%= f.text_field :name %>
+  <%= hidden_field_tag :user_id, "1" %>
+  <%= f.submit %>
 <% end %>
