@@ -6,7 +6,8 @@
   <% end %>
   <br/><br/>
   <% @user.bookmarks.each do |mark| %>
-    <%= link_to mark.bookmarkable_type, "#" %><br/>
+    <% the_path = get_mark_show_path(mark) %>
+    <%= link_to mark.bookmarkable_type, the_path %><br/>
   <% end %>
 
   <br/><br/>
