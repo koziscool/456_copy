@@ -65,20 +65,20 @@ users = [
     :first_name => 'foo',
     :last_name => 'bar',
     :email => 'foo@bar.com',
-    :password_digest => 'football'
+    :password => 'football'
   }
 ]
 (MULTIPLIER * NUM_USERS).times do
   first_name = ModelHelper.first_name
   last_name = ModelHelper.last_name
   email = ModelHelper.email("#{first_name} #{last_name}")
-  password_digest = 'football'
+  password = 'football'
 
   users << {
     :first_name => first_name,
     :last_name => last_name,
     :email => email,
-    :password_digest => password_digest
+    :password => password
   }
 end
 User.create(users)
