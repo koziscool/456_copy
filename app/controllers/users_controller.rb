@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   skip_filter :authenticate, :only => [ :show, :index ]  
-  before_action :require_login, :except => [:new, :create]
+  before_action :require_login, :except => [:new, :create, :show]
   before_action :require_current_user, :only => [:edit, :update, :destroy]
 
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
       else
         flash[:error] = "user not created"
-        redirect_to root_url
+        render :new
       end
     end
   end
@@ -45,9 +45,9 @@ class UsersController < ApplicationController
     @user = User.find( params[:id])
     if @user.update( user_params )
       flash[:notice] = "updated successfully"
-      render :show
+      redirect_to user_path(current_user)
     else
-      flash[:error] = "not successfully update"
+      flash[:error] = "not successfully updated"
       render :edit
     end
   end
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     @user = User.find( params[:id])
     if @user.destroy
       flash[:notice] = "Destroyed successfully."
-      redirect_to users_path
+      redirect_to root_path
     else
       render :edit
     end
