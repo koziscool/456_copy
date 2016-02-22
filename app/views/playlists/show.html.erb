@@ -1,0 +1,7 @@
+<h3>playlist here</h3>
+<% @playlist.name %><br/>
+<% @playlist.playlist_selections.each do |selection| %>
+  <%= link_to selection.song.artist.name, artist_path(selection.song.artist) %><br>
+  <%= link_to selection.song.name, song_path(selection.song) %>
+  <%= link_to "Delete", playlist_selection_path(selection), method: :delete %><br><br>
+<% end %>
