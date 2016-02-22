@@ -12,4 +12,10 @@ module UsersHelper
     the_path
   end
 
+  def following_exists?( user1, user2 )
+    Following.where("follower_id = ? AND followed_id = ?", 
+          current_user.id, params[:followed_id] ).empty?
+  end
+
+
 end

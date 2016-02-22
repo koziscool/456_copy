@@ -52,13 +52,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def create_follow
-      @following = Following.new
-      @following.follower_id = current_user.id
-      @following.followed_id = params[:followed_id]
-  end
-
-
   def destroy
     @user = User.find( params[:id])
     if @user.destroy
