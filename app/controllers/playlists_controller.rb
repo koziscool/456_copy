@@ -11,7 +11,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.new(playlist_params)
+    @playlist = Playlist.new( playlist_params )
     if @playlist.save
       puts "created"
       flash[:success] = "playlist created"
@@ -43,8 +43,7 @@ class PlaylistsController < ApplicationController
 
   def destroy
     @playlist = Playlist.find_by_id( params[:id] )
-
-    if !playlist
+    if !@playlist
       flash[:error] = "no such playlist"
       redirect_to root_url
     elsif @playlist.destroy

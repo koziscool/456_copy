@@ -23,3 +23,8 @@
   <%= link_to selection.song.name, song_path(selection.song) %>
   <%= link_to "Delete", playlist_selection_path(selection), method: :delete %><br><br>
 <% end %>
+
+<br>
+<%= link_to "Edit", edit_playlist_path(@playlist) %>
+<td> <%= link_to "Delete", playlist_path(@playlist), method: :delete %>
+  
