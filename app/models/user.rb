@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  before_create :generate_token
   has_secure_password
 
   validates :first_name, presence: true
