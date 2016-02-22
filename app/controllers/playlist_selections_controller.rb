@@ -21,8 +21,15 @@ class PlaylistSelectionsController < ApplicationController
   end
 
   def destroy
-    @playlist_selection = PlaylistSelection.find(params[:id])
-    if @playlist_selection.destroy
+
+    # also a hack, maybe a better way to do this
+    if params[:id].to_i == 0
+      @playlist_selection = nil
+    else
+      @playlist_selection = PlaylistSelection.find(params[:id])
+    end
+
+    if @playlist_selection && @playlist_selection.destroy
       flash[:success] = "selection removed!"
       redirect_to root_url
     else    

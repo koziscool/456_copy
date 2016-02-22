@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   get 'login' => 'users#new', as: :login
   delete "logout" => "sessions#destroy"
-
+  get "create_follow" => "users#create_follow"
+  get "destroy_follow" => "users#destroy_follow"
 
   resources :artists, :only => [:index, :show]
   resources :songs, :only => [ :show ]
-  resources :users
+  resources :users do
+
+  end
   resources :playlists
   resources :playlist_selections, :only => [ :create, :destroy  ]
   resources :bookmarks, :only => [ :create, :destroy  ]
