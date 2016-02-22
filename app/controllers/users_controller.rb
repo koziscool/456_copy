@@ -4,9 +4,34 @@ class UsersController < ApplicationController
   before_action :require_login, :except => [:new, :create]
   before_action :require_current_user, :only => [:edit, :update, :destroy]
 
+
+
   def index
     @users = User.all
   end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+
+    if signed_in_user?
+       flash[:error] = "already signed in"
+       redirect_to root_path
+    else
+      @user = User.new(user_params)
+      if @user.save
+        flash[:success] = "created successfully!"
+        sign_in(@user)
+        redirect_to user_path(@user)
+      else
+        flash[:error] = "user not created"
+        redirect_to root_url
+      end
+    end
+  end
+
 
   def show
     @user = User.find( params[:id] )
