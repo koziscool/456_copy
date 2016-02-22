@@ -3,8 +3,13 @@ class BookmarksController < ApplicationController
   before_action :require_current_user
 
   def create
-    @bookmark = Bookmark.new( bookmark_params )
-
+    if params[:bookmark]
+      @bookmark = Bookmark.new( bookmark_params )
+    else
+      @bookmark = Bookmark.new
+      @bookmark.bookmarkable_type = params[:bookmarkable_type]
+      @bookmark.bookmarkable_id = params[:bookmarkable_id]
+    end
     @bookmark.user_id =  current_user.id
 
     if @bookmark.save

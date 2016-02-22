@@ -12,6 +12,8 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new( playlist_params )
+    puts playlist_params
+    p @playlist
     if @playlist.save
       puts "created"
       flash[:success] = "playlist created"
