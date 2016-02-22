@@ -42,7 +42,7 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist = Playlist.find_(params[:id])
+    @playlist = Playlist.find_by_id( params[:id] )
 
     if !playlist
       flash[:error] = "no such playlist"
